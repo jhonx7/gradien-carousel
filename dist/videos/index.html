@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"
+      integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+      integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <style>
+    #myCarousel {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .carousel-control-next,
+    .carousel-control-prev {
+      width: 9% !important;
+    }
+
+    .carousel-inner {
+      background: #111;
+    }
+
+    .carousel-indicators {
+      bottom: -13px !important;
+    }
+
+    .carousel-item {
+      padding-bottom: 25px;
+    }
+
+    video {
+      width: 100%;
+    }
+  </style>
+  <body>
+    <div id="myCarousel" class="carousel slide" data-interval="false">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <video controls autoplay loop muted class="myvid" id="player">
+            <source
+              src="./vid1.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+
+        <div class="carousel-item">
+          <video controls autoplay class="myvid" id="player2">
+            <source
+              src="./vid2.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+
+        <div class="carousel-item">
+          <video controls autoplay class="myvid" id="player3">
+            <source
+              src="./vid3.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
+
+      <a
+        class="carousel-control-prev"
+        href="#myCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Vorige</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#myCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Volgende</span>
+      </a>
+    </div>
+  </body>
+  <script>
+    let allVids = $("#myCarousel").find(".carousel-item");
+
+    allVids.each(function (index, el) {
+      if (index !== 0) {
+        $(this).find("video")[0].pause();
+      }
+    });
+
+    $("#myCarousel").on("slide.bs.carousel", function (ev) {
+      let slides = $(this).find(".carousel-item");
+      let pvid = slides[ev.from].querySelectorAll("video")[0];
+      let vid = slides[ev.to].querySelectorAll("video")[0];
+      let isPlaying = vid.currentTime > 0 && vid.readyState > 2;
+
+      vid.play();
+
+      if (isPlaying) {
+        pvid.pause();
+      }
+    });
+  </script>
+</html>
