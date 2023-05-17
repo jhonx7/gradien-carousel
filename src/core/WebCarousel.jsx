@@ -12,7 +12,7 @@ function WebCarousel() {
       onSelect={(item) => {
         // console.log(item);
         if (item == 0) {
-           return navigate("/video");
+           return navigate("/");
         }
       }}
     >

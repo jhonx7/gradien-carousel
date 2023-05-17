@@ -9,8 +9,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/video" element={<VideoCarousel />} />
-        <Route path="/" element={<WebCarousel />} />
+        <Route path="/web" element={<WebCarousel />} />
+        <Route path="/" element={<VideoCarousel />} />
       </Routes>
     </Router>
   );
