@@ -13,7 +13,7 @@ const VideoCarousel = () => {
       className='react-player'
       url={videos[vid]}
       // pip={true}
-      // controls={true}
+      controls={true}
       playing={true}
       width='100%'
       height='100%'
@@ -23,7 +23,7 @@ const VideoCarousel = () => {
         setVid(y)
         // console.log(x);
         if (x > (videos.length-1)) {
-          return navigate("/web");
+          return navigate("/");
       }
       }}
     />
