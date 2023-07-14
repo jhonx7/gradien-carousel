@@ -35,10 +35,10 @@ function WebCarousel() {
         }}
       >
         {data?.map((item) => (
-          <Carousel.Item key={item} interval={10000}>
+          <Carousel.Item key={item.web} interval={item.duration}>
             <iframe
               style={{ height: "80vh", width: "90vw", overflow: "hidden" }}
-              src={item}
+              src={item.web}
               // allow='autoplay; encrypted-media'
               // allowFullScreen
               // title='video'
